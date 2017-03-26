@@ -7,7 +7,6 @@ import akka.actor.ActorRef;
 import akka.actor.UntypedActor;
 import car.tp3.message.HierarchyMessage;
 import car.tp3.message.IncrementMessage;
-import car.tp3.message.SimpleMessage;
 
 public class MyActor extends UntypedActor{
 	
@@ -21,30 +20,32 @@ public class MyActor extends UntypedActor{
 
 	@Override
 	public void onReceive(Object message) throws Exception {
-		if(message instanceof SimpleMessage){
-			SimpleMessage sMessage = (SimpleMessage)message;
-			this.log(sMessage.getMessage());
-		} else if(message instanceof HierarchyMessage) {
+		if(message instanceof HierarchyMessage) {
 			HierarchyMessage hMessage = (HierarchyMessage)message;
-			System.out.println("[" + sender().path().name() + "->" + getSelf().path().name() + "] message : " + hMessage.getType() + " :  " + hMessage.getRef().path().name());
+			this.log(getSender(), hMessage.getType());
 			if("parent".equalsIgnoreCase(hMessage.getType())) {
-				this.parent = hMessage.getRef();
+				this.parent = getSender();
 			} else if("child".equalsIgnoreCase(hMessage.getType())) {
-				this.refs.add(hMessage.getRef());
+				this.refs.add(getSender());
+				// L'acteur doit informer son fils qu'il est son père
+				getSender().tell(new HierarchyMessage("parent"), this.getSelf());
 			}
 		} else if(message instanceof IncrementMessage){
 			int nb = ((IncrementMessage)message).getNb();
-			this.log(""+nb);
+			this.log(getSender(), " valeur ("+nb+")");
 			for(ActorRef ref : refs){
-				ref.tell(new IncrementMessage(nb+1), this.getSelf());
+				if(!sender().equals(ref)){
+					ref.tell(new IncrementMessage(nb+1), this.getSelf());
+				}
 			}
-		} else {
-			System.out.println(message.toString());
+			if(this.parent != null && !sender().equals(this.parent)){
+				parent.tell(new IncrementMessage(nb+1), this.getSelf());
+			}
 		}
 	}
 	
-	public void log(String message){
-		System.out.println("Message reçu : " + message);
+	public void log(ActorRef sender, String message){
+		System.out.println("[" + sender().path().name() + "->" + getSelf().path().name() + "] message = " + message);
 	}
 
 }

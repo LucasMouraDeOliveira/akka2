@@ -23,21 +23,13 @@ public class Main {
 		child6 = actorSystem.actorOf(Props.create(MyActor.class), "child6");
 		
 		// Création de l'arborescence
-		parent.tell(new HierarchyMessage(child2, "child"), ActorRef.noSender());
-		parent.tell(new HierarchyMessage(child5, "child"), ActorRef.noSender());
+		parent.tell(new HierarchyMessage("child"), child2);
+		parent.tell(new HierarchyMessage("child"), child5);
 		
-		child2.tell(new HierarchyMessage(parent, "parent"), ActorRef.noSender());
-		child2.tell(new HierarchyMessage(child3, "child"), ActorRef.noSender());
-		child2.tell(new HierarchyMessage(child4, "child"), ActorRef.noSender());
+		child2.tell(new HierarchyMessage("child"), child3);
+		child2.tell(new HierarchyMessage("child"), child4);
 		
-		child5.tell(new HierarchyMessage(parent, "parent"), ActorRef.noSender());
-		child5.tell(new HierarchyMessage(child6, "child"), ActorRef.noSender());
-		
-		child3.tell(new HierarchyMessage(child2, "parent"), ActorRef.noSender());
-		
-		child4.tell(new HierarchyMessage(child2, "parent"), ActorRef.noSender());
-		
-		child6.tell(new HierarchyMessage(child5, "parent"), ActorRef.noSender());
+		child5.tell(new HierarchyMessage("child"), child6);
 		
 		// Envoi de message
 		child2.tell(new IncrementMessage(0), ActorRef.noSender());

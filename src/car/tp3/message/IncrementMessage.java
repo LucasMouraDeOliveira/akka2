@@ -8,6 +8,7 @@ public class IncrementMessage implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 8090625169729160286L;
+	
 	protected int nb;
 	
 	public IncrementMessage(int nb){

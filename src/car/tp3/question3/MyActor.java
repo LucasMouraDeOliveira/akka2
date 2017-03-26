@@ -31,11 +31,12 @@ public class MyActor extends UntypedActor{
 			}
 		} else if (data instanceof HierarchyMessage){
 			HierarchyMessage message = (HierarchyMessage)data;
-			System.out.println("[" + sender().path().name() + "->" + getSelf().path().name() + "] message : " + message.getType() + " :  " + message.getRef().path().name());
+			System.out.println("[" + sender().path().name() + "->" + getSelf().path().name() + "] message : " + message.getType() + " :  " + getSender().path().name());
 			if("parent".equalsIgnoreCase(message.getType())) {
-				this.parent = message.getRef();
+				this.parent = getSender();
 			} else if("child".equalsIgnoreCase(message.getType())) {
-				this.refs.add(message.getRef());
+				this.refs.add(getSender());
+				getSender().tell(new HierarchyMessage("parent"), getSelf());
 			}
 		}
 	}
