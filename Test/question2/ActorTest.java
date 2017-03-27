@@ -36,7 +36,9 @@ public class ActorTest {
 		verify(message).getNb();
 		
 		MyActor actor = ref.underlyingActor();
+		
 		Assert.assertEquals(actor.getLastMessage(),message);
+		
 		ArgumentCaptor<IncrementMessage> argument = ArgumentCaptor.forClass(IncrementMessage.class);
 	
 		verify(spy).tell(argument.capture(), any(ActorRef.class));

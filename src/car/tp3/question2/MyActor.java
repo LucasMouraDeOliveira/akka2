@@ -16,6 +16,7 @@ import car.tp3.message.IncrementMessage;
 public class MyActor extends UntypedActor{
 	
 	protected List<ActorRef> refs;
+	private IncrementMessage lastmsg;
 	
 	/**
 	 * Initialise un acteur avec une liste de fils vides
@@ -30,12 +31,17 @@ public class MyActor extends UntypedActor{
 	@Override
 	public void onReceive(Object arg0) throws Exception {
 		if(arg0 instanceof IncrementMessage){
-			int nb = ((IncrementMessage)arg0).getNb()+1;
+			lastmsg = ((IncrementMessage)arg0);
+			int nb = lastmsg.getNb()+1;
 			System.out.println("[" + sender().path().name() + "->" + getSelf().path().name() + "] message : " + nb);
 			for(ActorRef ref : refs){
 				ref.tell(new IncrementMessage(nb), getSelf());
 			}
 		}
+	}
+
+	public IncrementMessage getLastMessage() {
+		return lastmsg;
 	}
 
 }
