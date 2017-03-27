@@ -7,7 +7,18 @@ Eliott Bricout
 
 26/03/2017
 
+## Compilation
+
+Les jars étant trop gros pour être déposés tous les deux sur prof (max 20Mo), il faudra les compiler avec la commande suivante : 
+
+	mvn package
+	
+Les deux jars utilisés, Akka-Client.jar et Akka-Server.jar, se situent dans le dossier target à la racine du projet. Ils sont également disponibles en ligne à l'adresse suivante : 
+
+	https://github.com/LucasMouraDeOliveira/akka2 (dossier target)
+
 ## Exécution
+
 
 L'application est découpée en deux parties, et donc deux jars exécutables indépendamment.
 
@@ -36,6 +47,18 @@ Le jar se lance avec la commande suivante :
 <serverName> est un paramètre obligatoire qui prend une valeur textuelle, non vide, qui permet de déterminer le nom apparent du système d'acteur.
 
 ### Configuration de graphe
+
+Voir le fichier graph.properties qui fournit un exemple de construction de graphe.
+Les lignes au dessus de "---Actor---" permettent de créer des acteurs en spécifiant : 
+
+	- le nom du systemActor
+	- l'adresse du systemActor
+	- le port
+	- une liste d'acteurs
+
+Chaque paramètre étant séparé par un espace
+
+En dessous de la ligne "---Actor---" sont définis les liens entre les acteurs.
 
 ## Fonctionnalités
 
