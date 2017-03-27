@@ -19,8 +19,9 @@ public class Launcher {
 	 * sur deux systèmes distants, puis les liaisons de voisinages sont créées.
 	 * Enfin, trois message (dont un doublon) sont envoyés aux acteurs.
 	 * 
-	 * @param args
-	 * @throws InterruptedException
+	 * @param args inutilisés
+	 * 
+	 * @throws InterruptedException erreur de sleep du thread
 	 */
 	public static void main(String[] args) throws InterruptedException {
 		// Server 1

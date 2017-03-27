@@ -22,7 +22,7 @@ public class Main {
 	 * 
 	 * Envoie un message de test (compteur) qui parcours l'arbre.
 	 * 
-	 * @param args
+	 * @param args inutilisés
 	 */
 	public static void main(String[] args) {
 		ActorSystem actorSystem = ActorSystem.create("system");
