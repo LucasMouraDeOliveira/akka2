@@ -5,6 +5,8 @@ import java.util.List;
 
 import akka.actor.ActorRef;
 import akka.actor.UntypedActor;
+import car.tp3.message.IdMessage;
+import car.tp3.message.NeighborMessage;
 
 /**
  * Implémentation d'un acteur pour la question 5 du TP.

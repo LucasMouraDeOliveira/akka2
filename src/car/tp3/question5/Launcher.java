@@ -3,6 +3,9 @@ package car.tp3.question5;
 import java.util.ArrayList;
 import java.util.List;
 
+import car.tp3.message.IdMessage;
+import car.tp3.message.NeighborMessage;
+
 /**
  * Launcher pour l'exercice 5 du TP
  * 

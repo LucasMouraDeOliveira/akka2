@@ -1,4 +1,4 @@
-package car.tp3.question5;
+package car.tp3.message;
 
 import java.io.Serializable;
 

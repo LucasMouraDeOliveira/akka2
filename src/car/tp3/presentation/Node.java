@@ -5,7 +5,9 @@ import java.util.List;
 
 import akka.actor.ActorRef;
 import akka.actor.UntypedActor;
-import car.tp3.question5.IdMessage;
+import car.tp3.message.ExtendedNeighborMessage;
+import car.tp3.message.IdMessage;
+import car.tp3.message.ShutdownMessage;
 
 /**
  * Acteur de l'application répartie, relié à d'autres noeuds par une liste de voisins.
@@ -51,8 +53,8 @@ public class Node extends UntypedActor{
 
 	@Override
 	public void onReceive(Object message) throws Exception {
-		if(message instanceof NeighborMessage) {
-			NeighborMessage nMessage = (NeighborMessage)message;
+		if(message instanceof ExtendedNeighborMessage) {
+			ExtendedNeighborMessage nMessage = (ExtendedNeighborMessage)message;
 			if(nMessage.getAction().equals("add")){
 				this.log("added sender as neighbor");
 				this.addNeighbor(getSender());
@@ -72,7 +74,7 @@ public class Node extends UntypedActor{
 			}
 		} else if(message instanceof ShutdownMessage) {
 			for(ActorRef ref : this.neighbors){
-				ref.tell(new NeighborMessage("delete"), this.getSelf());
+				ref.tell(new ExtendedNeighborMessage("delete"), this.getSelf());
 			}
 			// On arrête l'acteur
 			context().stop(getSelf());

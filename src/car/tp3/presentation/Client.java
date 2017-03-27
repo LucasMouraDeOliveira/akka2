@@ -14,7 +14,9 @@ import akka.actor.AddressFromURIString;
 import akka.actor.Deploy;
 import akka.actor.Props;
 import akka.remote.RemoteScope;
-import car.tp3.question5.IdMessage;
+import car.tp3.message.ExtendedNeighborMessage;
+import car.tp3.message.IdMessage;
+import car.tp3.message.ShutdownMessage;
 
 /**
  * Client Akka pour la recette du TP3. Le client contient un actorSystem lancé
@@ -142,8 +144,8 @@ public class Client {
 	}
 
 	private void unlinkActors(ActorRef actor1, ActorRef actor2) {
-		actor1.tell(new NeighborMessage("delete"), actor2);
-		actor2.tell(new NeighborMessage("delete"), actor1);
+		actor1.tell(new ExtendedNeighborMessage("delete"), actor2);
+		actor2.tell(new ExtendedNeighborMessage("delete"), actor1);
 	}
 
 	private String link(String[] command) {
@@ -164,8 +166,8 @@ public class Client {
 	}
 
 	private void linkActors(ActorRef actor1, ActorRef actor2) {
-		actor1.tell(new NeighborMessage("add"), actor2);
-		actor2.tell(new NeighborMessage("add"), actor1);
+		actor1.tell(new ExtendedNeighborMessage("add"), actor2);
+		actor2.tell(new ExtendedNeighborMessage("add"), actor1);
 	}
 
 	private String send(String[] command) {
