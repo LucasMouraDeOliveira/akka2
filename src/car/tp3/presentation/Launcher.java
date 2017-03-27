@@ -13,15 +13,13 @@ public class Launcher {
 	 */
 	public static void main(String[] args) {
 		Client client = new Client();
-		
-		if(args.length == 1){
-			try {
-				new GraphBuilder(args[0]).build(client);
-			} catch (IOException e) {
-			}
-		}
-			
 		if(client.start()){
+			if(args.length == 1){
+				try {
+					new GraphBuilder(args[0]).build(client);
+				} catch (IOException e) {
+				}
+			}
 			Scanner sc = new Scanner(System.in);
 			System.out.print("> ");
 			String line = "";

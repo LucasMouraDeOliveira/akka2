@@ -1,11 +1,8 @@
 package car.tp3.presentation;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
-import car.tp3.question5.MySystemServer;
 
 public class GraphBuilder {
 	private String properties;
