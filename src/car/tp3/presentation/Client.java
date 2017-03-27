@@ -37,20 +37,14 @@ public class Client {
 
 	protected ActorSystem actorSystem;
 
-	protected String actorSystemName;
-
 	protected boolean started;
 
 	protected Map<String, ActorRef> remoteActors;
 
 	/**
-	 * Initialise le serveur avec un nom.
-	 * 
-	 * @param actorSystemName
-	 *            le nom du système
+	 * Initialise le client.
 	 */
-	public Client(String actorSystemName) {
-		this.actorSystemName = actorSystemName;
+	public Client() {
 		this.remoteActors = new HashMap<String, ActorRef>();
 	}
 
@@ -76,7 +70,7 @@ public class Client {
 
 	private void createActorSystem() throws IllegalArgumentException {
 		Config config = ConfigFactory.load();
-		this.actorSystem = ActorSystem.create(this.actorSystemName, config);
+		this.actorSystem = ActorSystem.create("client", config);
 	}
 
 	/**
@@ -122,6 +116,7 @@ public class Client {
 			break;
 		case "unlink":
 			message = unlink(params);
+			break;
 		default:
 			message = "Erreur : commande inconnue";
 		}
@@ -129,7 +124,8 @@ public class Client {
 	}
 
 	private String unlink(String[] command) {
-		// Il faut 2 paramètres (en plus du nom de commande) : nom de l'acteur 1 et nom de l'acteur 2
+		// Il faut 2 paramètres (en plus du nom de commande) : nom de l'acteur 1
+		// et nom de l'acteur 2
 		// et message
 		if (command.length != 3) {
 			return "Erreur : nombre de paramètres invalide."
@@ -199,6 +195,9 @@ public class Client {
 		if (command.length != 5) {
 			return "Erreur : nombre de paramètres invalide."
 					+ "\nLe format attendu est le suivant : create <nom_serveur> <adresse> <port> <nom_acteur>";
+		}
+		if(this.remoteActors.containsKey(command[4])){
+			return "Erreur : le nom d'acteur est déjà utilisé, veuillez en trouver un nouveau";
 		}
 		String address = "akka.tcp://" + command[1] + "@" + command[2] + ":" + command[3];
 		Address addr = AddressFromURIString.parse(address);

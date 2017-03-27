@@ -11,11 +11,9 @@ public class Launcher {
 	 * @param args inutilisé
 	 */
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Veuillez entrer le nom du serveur : ");
-		String name = sc.nextLine();
-		Client client = new Client(name);
+		Client client = new Client();
 		if(client.start()){
+			Scanner sc = new Scanner(System.in);
 			System.out.print("> ");
 			String line = "";
 			while(!(line = sc.nextLine()).equals("quit")){
@@ -23,8 +21,8 @@ public class Launcher {
 				System.out.print("> ");
 			}
 			client.shutdown();
+			sc.close();
 		}
-		sc.close();
 	}
 
 }
