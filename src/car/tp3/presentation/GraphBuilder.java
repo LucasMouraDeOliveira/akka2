@@ -4,13 +4,26 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * classe qui genere le graph grâce à un fichier.
+ * @author bricout
+ */
 public class GraphBuilder {
 	private String properties;
 
+	/**
+	 * Initialise le fichier du graph.
+	 * @param properties Nom du fichier de properties du graph.
+	 */
 	public GraphBuilder(String properties) {
 		this.properties = properties;
 	}
 
+	/**
+	 * Envoie les messages au client pour crée les noeuds et les liens.
+	 * @param client Le client.
+	 * @throws IOException Il peut y avoir un IOException si il y a un problème avec le fichier.
+	 */
 	public void build(Client client) throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader(properties));
 		String line;
