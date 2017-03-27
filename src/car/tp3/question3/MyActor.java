@@ -33,7 +33,9 @@ public class MyActor extends UntypedActor{
 			int nb = ((IncrementMessage)data).getNb()+1;
 			System.out.println("[" + sender().path().name() + "->" + getSelf().path().name() + "] message : " + nb);
 			for(ActorRef ref : refs){
-				ref.tell(new IncrementMessage(nb), getSelf());
+				if(!sender().equals(ref)){
+					ref.tell(new IncrementMessage(nb), getSelf());					
+				}
 			}
 			if(this.parent != null && !sender().equals(this.parent)){
 				parent.tell(new IncrementMessage(nb), getSelf());
@@ -48,5 +50,9 @@ public class MyActor extends UntypedActor{
 				getSender().tell(new HierarchyMessage("parent"), getSelf());
 			}
 		}
+	}
+	
+	public ActorRef getParent() {
+		return parent;
 	}
 }

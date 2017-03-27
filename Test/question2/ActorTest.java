@@ -19,7 +19,7 @@ import static org.mockito.Mockito.*;
 public class ActorTest {
 
 	@Test
-	public void test() throws Exception {
+	public void testQuestion2() throws Exception {
 		
 		ActorSystem actorSystem = ActorSystem.create("system");
 		ActorRef child;

@@ -59,18 +59,6 @@ public class MySystemServer {
 	}
 	
 	/**
-	 * Envoie un message à un acteur du système
-	 * 
-	 * @param actor le nom de l'acteur
-	 * @param message le message à envoyer
-	 */
-	public void sendLocalMessage(String actor, Object message) {
-		ActorRef ref = this.actors.get(actor);
-		if(ref != null)
-			ref.tell(message, ActorRef.noSender());
-	}
-	
-	/**
 	 * Envoie un message à un acteur d'un autre système
 	 * 
 	 * @param url l'url du système distant
@@ -102,4 +90,10 @@ public class MySystemServer {
 		return "akka.tcp://"+serverName+"@"+address+":"+port+"/user/"+resource;
 	}
 	
+	/**
+	 * ferme le serveur
+	 */
+	public void close(){
+		this.actorSystem.shutdown();
+	}
 }

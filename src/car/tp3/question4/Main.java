@@ -12,7 +12,7 @@ import car.tp3.message.IncrementMessage;
  * @author Lucas Moura de Oliveira
  *
  */
-public class ServerLauncher {
+public class Main {
 
 	/**
 	 * Lance l'implémentation de la question 4 du tp.
@@ -52,6 +52,8 @@ public class ServerLauncher {
 		url = server.getRemoteAddress("server1", "localhost", "9999", "node5");
 		server2.sendRemoteMessage(url, null, new IncrementMessage(0));
 		
+		server.close();
+		server2.close();
 	}
 
 }
