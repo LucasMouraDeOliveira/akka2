@@ -36,6 +36,8 @@ Le jar se lance avec la commande suivante :
 
 ##Configuration de graphe
 
+
+
 #Fonctionnalités
 
 Les fonctionnalités de l'applications sont toutes à exécuter depuis le client (mis à part le lancement des serveurs). Chaque fonctionnalité est associée à une commande exécutable depuis le terminal où le client a été lancé.
@@ -55,6 +57,8 @@ Les fonctionnalités de l'applications sont toutes à exécuter depuis le client (m
 	quit : arrête l'actorSystem du client et quitte l'application.
 	
 Par commodité, dans la plupart des commandes on passe seulement le nom de l'acteur et non pas son chemin d'accès complet. La conséquence de ce choix est que deux acteurs, même sur des serveurs différents, ne peuvent pas avoir le même nom. Lorsqu'un utilisateur tente de créer un acteur dont le nom est déjà référencé par le client, la création échoue et un message d'erreur lui est renvoyé.
+
+En ce qui concerne les liens de parenté, nous avons choisi de nous basé uniquement sur des relations de voisins. Etant donné qu'un arbre constitue un cas particulier d'un graphe (non cyclique) et que notre graphe est capable de transmettre les messages à tous ses noeuds, nous pensons que l'implémentation d'un lien père/fils dans les noeuds n'est pas nécessaire.
 
 ##Logs
 
