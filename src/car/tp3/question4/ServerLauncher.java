@@ -15,9 +15,10 @@ import car.tp3.message.IncrementMessage;
 public class ServerLauncher {
 
 	/**
-	 * Lance l'implémentation de la question 4 du tp.
-	 * Les acteurs sont répartis sur deux systèmes distants, puis les liaisons père/fils sont créées.
-	 * Enfin, un message de test (compteur) est envoyé à un des acteurs et parcours l'arbre.
+	 * Lance l'implémentation de la question 4 du tp. Les acteurs sont répartis
+	 * sur deux systèmes distants, puis les liaisons père/fils sont créées.
+	 * Enfin, un message de test (compteur) est envoyé à un des acteurs et
+	 * parcours l'arbre.
 	 * 
 	 * @param args
 	 */
@@ -31,27 +32,27 @@ public class ServerLauncher {
 		String url = server.getRemoteAddress("server1", "localhost", "9999", "node1");
 		server.sendRemoteMessage(url, "node2", new HierarchyMessage("child"));
 		server.sendRemoteMessage(url, "node5", new HierarchyMessage("child"));
-		
+
 		// Server 2
 		List<String> actors = new ArrayList<String>();
 		actors.add("node3");
 		actors.add("node4");
 		actors.add("node6");
 		MySystemServer server2 = new MySystemServer("server2", 9998, actors);
-		
+
 		url = server.getRemoteAddress("server1", "localhost", "9999", "node2");
 		server2.sendRemoteMessage(url, "node3", new HierarchyMessage("child"));
-		
+
 		url = server.getRemoteAddress("server1", "localhost", "9999", "node2");
 		server2.sendRemoteMessage(url, "node4", new HierarchyMessage("child"));
-		
+
 		url = server.getRemoteAddress("server1", "localhost", "9999", "node5");
 		server2.sendRemoteMessage(url, "node6", new HierarchyMessage("child"));
-		
+
 		// Parcours de l'arbre
 		url = server.getRemoteAddress("server1", "localhost", "9999", "node5");
 		server2.sendRemoteMessage(url, null, new IncrementMessage(0));
-		
+
 	}
 
 }

@@ -198,7 +198,7 @@ public class Client {
 			return "Erreur : nombre de paramètres invalide."
 					+ "\nLe format attendu est le suivant : create <nom_serveur> <adresse> <port> <nom_acteur>";
 		}
-		if(this.remoteActors.containsKey(command[4])){
+		if (this.remoteActors.containsKey(command[4])) {
 			return "Erreur : le nom d'acteur est déjà utilisé, veuillez en trouver un nouveau";
 		}
 		String address = "akka.tcp://" + command[1] + "@" + command[2] + ":" + command[3];
