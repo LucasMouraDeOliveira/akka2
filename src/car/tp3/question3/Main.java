@@ -6,8 +6,21 @@ import akka.actor.Props;
 import car.tp3.message.HierarchyMessage;
 import car.tp3.message.IncrementMessage;
 
+/**
+ * Launcher pour l'exercice 3 du TP
+ * 
+ * @author Lucas Moura de Oliveira
+ *
+ */
 public class Main {
 	
+	/**
+	 * Lance l'implémentation de l'exercice 3 du TP. Crée un actorSystem avec des acteurs, puis relie ces acteurs par
+	 * des liens père/fils.
+	 * Enfin, envoie un message de test qui parcours l'arbre.
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		
 		// Création du système

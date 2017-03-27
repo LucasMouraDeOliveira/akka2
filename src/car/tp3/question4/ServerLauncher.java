@@ -6,8 +6,21 @@ import java.util.List;
 import car.tp3.message.HierarchyMessage;
 import car.tp3.message.IncrementMessage;
 
+/**
+ * Launcher pour l'exercice 4 du TP
+ * 
+ * @author Lucas Moura de Oliveira
+ *
+ */
 public class ServerLauncher {
 
+	/**
+	 * Lance l'implémentation de la question 4 du tp.
+	 * Les acteurs sont répartis sur deux systèmes distants, puis les liaisons père/fils sont créées.
+	 * Enfin, un message de test (compteur) est envoyé à un des acteurs et parcours l'arbre.
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		// Server 1
 		List<String> actors1 = new ArrayList<String>();

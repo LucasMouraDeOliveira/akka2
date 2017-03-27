@@ -3,8 +3,22 @@ package car.tp3.question5;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Launcher pour l'exercice 5 du TP
+ * 
+ * @author Lucas Moura de Oliveira
+ *
+ */
 public class Launcher {
 	
+	/**
+	 * Lance l'implémentation de la question 5 du tp.
+	 * Les acteurs sont répartis sur deux systèmes distants, puis les liaisons de voisinages sont créées.
+	 * Enfin, trois message (dont un doublon) sont envoyés aux acteurs.
+	 * 
+	 * @param args
+	 * @throws InterruptedException
+	 */
 	public static void main(String[] args) throws InterruptedException {
 		// Server 1
 		List<String> actors1 = new ArrayList<String>();

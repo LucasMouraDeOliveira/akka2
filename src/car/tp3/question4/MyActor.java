@@ -8,12 +8,21 @@ import akka.actor.UntypedActor;
 import car.tp3.message.HierarchyMessage;
 import car.tp3.message.IncrementMessage;
 
+/**
+ * Implémentation d'un acteur pour la question 4 du TP
+ * 
+ * @author Lucas Moura de Oliveira
+ *
+ */
 public class MyActor extends UntypedActor{
 	
 	protected ActorRef parent;
 	
 	protected List<ActorRef> refs;
 	
+	/**
+	 * Initialise l'acteur avec une liste de fils vide
+	 */
 	public MyActor(){
 		this.refs = new ArrayList<ActorRef>();
 	}
@@ -44,8 +53,15 @@ public class MyActor extends UntypedActor{
 		}
 	}
 	
+	
+	/**
+	 * Affiche un message reçu dans la console 
+	 * @param sender l'expéditeur du message
+	 * @param message le contenu du message
+	 */
 	public void log(ActorRef sender, String message){
 		System.out.println("[" + sender().path().name() + "->" + getSelf().path().name() + "] message = " + message);
 	}
+
 
 }

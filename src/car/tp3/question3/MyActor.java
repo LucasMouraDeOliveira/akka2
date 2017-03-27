@@ -8,12 +8,21 @@ import akka.actor.UntypedActor;
 import car.tp3.message.HierarchyMessage;
 import car.tp3.message.IncrementMessage;
 
+/**
+ * Implémentation d'un acteur pour la question 3 du TP
+ * 
+ * @author Lucas Moura de Oliveira
+ *
+ */
 public class MyActor extends UntypedActor{
 	
 	protected ActorRef parent;
 	
 	protected List<ActorRef> refs;
 	
+	/**
+	 * Initialise un acteur avec une liste de fils vides
+	 */
 	public MyActor(){
 		this.refs = new ArrayList<ActorRef>();
 	}
