@@ -19,7 +19,9 @@ public class MyActor extends UntypedActor {
 	private IncrementMessage lastmsg;
 
 	/**
-	 * Initialise un acteur avec une liste de fils vides
+	 * Initialise un acteur avec une liste de références
+	 * 
+	 * @param references les références connues par l'acteur
 	 */
 	public MyActor(List<ActorRef> references) {
 		this.refs = new ArrayList<ActorRef>();

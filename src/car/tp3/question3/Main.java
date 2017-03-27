@@ -19,7 +19,7 @@ public class Main {
 	 * des acteurs, puis relie ces acteurs par des liens père/fils. Enfin,
 	 * envoie un message de test qui parcours l'arbre.
 	 * 
-	 * @param args
+	 * @param args inutilisés
 	 */
 	public static void main(String[] args) {
 
