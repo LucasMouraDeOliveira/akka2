@@ -1,64 +1,64 @@
-#TP3 CAR - Akka
+# TP3 CAR - Akka
 
-#Auteurs
+## Auteurs
 Lucas Moura de Oliveira
 Eliott Bricout
 
 26/03/2017
 
-#Exécution
+## ExÃ©cution
 
-L'application est découpée en deux parties, et donc deux jars exécutables indépendamment.
+L'application est dÃ©coupÃ©e en deux parties, et donc deux jars exÃ©cutables indÃ©pendamment.
 
-##Client
+### Client
 
-Akka-Client.jar permet de lancer le client de l'application. A partir de ce client on peut créer/supprimer des noeuds, créer/supprimer des liaisons entre ces noeuds, et envoyer des messages.
+Akka-Client.jar permet de lancer le client de l'application. A partir de ce client on peut crÃ©er/supprimer des noeuds, crÃ©er/supprimer des liaisons entre ces noeuds, et envoyer des messages.
 	
 Le jar se lance avec la commande suivante : 
 	
 	java -jar Akka-Client.jar [config]
 	
-[config] est un paramètre optionnel permettant de spécifier le chemin d'accès à un fichier de configuration. Si ce paramètre est renseigné, le programme charge le fichier de configuration, qui doit contenir le schéma d'un graphe (format expliqué ci-dessous), et crée ce graphe sur le ou les systèmes Akka spécifiés. 
+[config] est un paramÃ¨tre optionnel permettant de spÃ©cifier le chemin d'accÃ¨s Ã  un fichier de configuration. Si ce paramÃ¨tre est renseignÃ©, le programme charge le fichier de configuration, qui doit contenir le schÃ©ma d'un graphe (format expliquÃ© ci-dessous), et crÃ©e ce graphe sur le ou les systÃ¨mes Akka spÃ©cifiÃ©s. 
 	
-Dans le cas ou le paramètre [config] n'est pas renseigné, aucun noeud ni aucune liaison ne sont créés.
+Dans le cas ou le paramÃ¨tre [config] n'est pas renseignÃ©, aucun noeud ni aucune liaison ne sont crÃ©Ã©s.
 	
-##Serveur
+### Serveur
 
-Akka-Serveur.jar permet de lancer un serveur (système d'acteurs Akka). Les noeuds créés par la partie client de l'application sont créés dans ce (ou ces) système(s).
+Akka-Serveur.jar permet de lancer un serveur (systÃ¨me d'acteurs Akka). Les noeuds crÃ©Ã©s par la partie client de l'application sont crÃ©Ã©s dans ce (ou ces) systÃ¨me(s).
 
 Le jar se lance avec la commande suivante : 
 	
 	java -jar Akka-Server.jar <port> <serverName>
 	
-<port> est un paramètre obligatoire qui prend une valeur numérique (de préférence entre 1025 et 65536) qui permet de déterminer sur quel port lancer le serveur.
+<port> est un paramÃ¨tre obligatoire qui prend une valeur numÃ©rique (de prÃ©fÃ©rence entre 1025 et 65536) qui permet de dÃ©terminer sur quel port lancer le serveur.
 
-<serverName> est un paramètre obligatoire qui prend une valeur textuelle, non vide, qui permet de déterminer le nom apparent du système d'acteur.
+<serverName> est un paramÃ¨tre obligatoire qui prend une valeur textuelle, non vide, qui permet de dÃ©terminer le nom apparent du systÃ¨me d'acteur.
 
-##Configuration de graphe
+### Configuration de graphe
 
-#Fonctionnalités
+## FonctionnalitÃ©s
 
-Les fonctionnalités de l'applications sont toutes à exécuter depuis le client (mis à part le lancement des serveurs). Chaque fonctionnalité est associée à une commande exécutable depuis le terminal où le client a été lancé.
+Les fonctionnalitÃ©s de l'applications sont toutes Ã  exÃ©cuter depuis le client (mis Ã  part le lancement des serveurs). Chaque fonctionnalitÃ© est associÃ©e Ã  une commande exÃ©cutable depuis le terminal oÃ¹ le client a Ã©tÃ© lancÃ©.
 
-## Liste des fonctionnalités
+###  Liste des fonctionnalitÃ©s
 
-	create <serverName> <address> <port> <actorName> : créé un acteur sur un serveur distant.
+	create <serverName> <address> <port> <actorName> : crÃ©Ã© un acteur sur un serveur distant.
 	
-	delete <actorName> : supprime un acteur distant. Tous les liens de voisinages de l'acteur sont supprimés.
+	delete <actorName> : supprime un acteur distant. Tous les liens de voisinages de l'acteur sont supprimÃ©s.
 	
-	link <actorName1> <actorName2> : crée un lien de voisinage entre deux acteurs.
+	link <actorName1> <actorName2> : crÃ©e un lien de voisinage entre deux acteurs.
 	
 	unlink <actorName1> <actorName2> : supprime un lien de voisinage entre deux acteurs.
 	
-	send <actorName> <message> : envoie un message à un acteur, qui le transmet à tous ses voisins.
+	send <actorName> <message> : envoie un message Ã  un acteur, qui le transmet Ã  tous ses voisins.
 	
-	quit : arrête l'actorSystem du client et quitte l'application.
+	quit : arrÃªte l'actorSystem du client et quitte l'application.
 	
-Par commodité, dans la plupart des commandes on passe seulement le nom de l'acteur et non pas son chemin d'accès complet. La conséquence de ce choix est que deux acteurs, même sur des serveurs différents, ne peuvent pas avoir le même nom. Lorsqu'un utilisateur tente de créer un acteur dont le nom est déjà référencé par le client, la création échoue et un message d'erreur lui est renvoyé.
+Par commoditÃ©, dans la plupart des commandes on passe seulement le nom de l'acteur et non pas son chemin d'accÃ¨s complet. La consÃ©quence de ce choix est que deux acteurs, mÃªme sur des serveurs diffÃ©rents, ne peuvent pas avoir le mÃªme nom. Lorsqu'un utilisateur tente de crÃ©er un acteur dont le nom est dÃ©jÃ  rÃ©fÃ©rencÃ© par le client, la crÃ©ation Ã©choue et un message d'erreur lui est renvoyÃ©.
 
-##Logs
+### Logs
 
-Lorsqu'un acteur reçoit un message, celui-ci apparaitra dans la console depuis laquelle son actorSystem a été lancé. 
+Lorsqu'un acteur reÃ§oit un message, celui-ci apparaitra dans la console depuis laquelle son actorSystem a Ã©tÃ© lancÃ©. 
 Les messages sont de la forme : [sender -> receiver] message
 
 
