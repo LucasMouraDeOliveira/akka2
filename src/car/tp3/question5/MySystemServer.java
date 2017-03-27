@@ -102,4 +102,10 @@ public class MySystemServer {
 		return "akka.tcp://"+serverName+"@"+address+":"+port+"/user/"+resource;
 	}
 	
+	/**
+	 * ferme le server
+	 */
+	public void close(){
+		this.actorSystem.shutdown();
+	}
 }
