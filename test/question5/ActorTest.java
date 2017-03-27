@@ -1,8 +1,9 @@
 package question5;
 import org.junit.Test;
+
+import car.tp3.message.IdMessage;
+import car.tp3.message.NeighborMessage;
 import car.tp3.question5.MySystemServer;
-import car.tp3.question5.IdMessage;
-import car.tp3.question5.NeighborMessage;
 import junit.framework.Assert;
 import scala.collection.mutable.StringBuilder;
 

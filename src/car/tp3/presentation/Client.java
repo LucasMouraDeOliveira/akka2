@@ -14,7 +14,9 @@ import akka.actor.AddressFromURIString;
 import akka.actor.Deploy;
 import akka.actor.Props;
 import akka.remote.RemoteScope;
-import car.tp3.question5.IdMessage;
+import car.tp3.message.ExtendedNeighborMessage;
+import car.tp3.message.IdMessage;
+import car.tp3.message.ShutdownMessage;
 
 /**
  * Client Akka pour la recette du TP3. Le client contient un actorSystem lancé
@@ -142,8 +144,8 @@ public class Client {
 	}
 
 	private void unlinkActors(ActorRef actor1, ActorRef actor2) {
-		actor1.tell(new NeighborMessage("delete"), actor2);
-		actor2.tell(new NeighborMessage("delete"), actor1);
+		actor1.tell(new ExtendedNeighborMessage("delete"), actor2);
+		actor2.tell(new ExtendedNeighborMessage("delete"), actor1);
 	}
 
 	private String link(String[] command) {
@@ -164,8 +166,8 @@ public class Client {
 	}
 
 	private void linkActors(ActorRef actor1, ActorRef actor2) {
-		actor1.tell(new NeighborMessage("add"), actor2);
-		actor2.tell(new NeighborMessage("add"), actor1);
+		actor1.tell(new ExtendedNeighborMessage("add"), actor2);
+		actor2.tell(new ExtendedNeighborMessage("add"), actor1);
 	}
 
 	private String send(String[] command) {
@@ -196,7 +198,7 @@ public class Client {
 			return "Erreur : nombre de paramètres invalide."
 					+ "\nLe format attendu est le suivant : create <nom_serveur> <adresse> <port> <nom_acteur>";
 		}
-		if(this.remoteActors.containsKey(command[4])){
+		if (this.remoteActors.containsKey(command[4])) {
 			return "Erreur : le nom d'acteur est déjà utilisé, veuillez en trouver un nouveau";
 		}
 		String address = "akka.tcp://" + command[1] + "@" + command[2] + ":" + command[3];
