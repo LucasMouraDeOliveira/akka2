@@ -30,7 +30,10 @@
 				<artifactId>maven-shade-plugin</artifactId>
 				<version>1.5</version>
 				<executions>
+				
+					<!-- Client -->
 					<execution>
+						<id>client-akka</id>
 						<phase>package</phase>
 						<goals>
 							<goal>shade</goal>
@@ -38,6 +41,7 @@
 						<configuration>
 							<shadedArtifactAttached>true</shadedArtifactAttached>
 							<shadedClassifierName>allinone</shadedClassifierName>
+							<finalName>Akka-Client</finalName>
 							<artifactSet>
 								<includes>
 									<include>*:*</include>
@@ -52,6 +56,37 @@
 									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 									<manifestEntries>
 										<Main-Class>car.tp3.presentation.Launcher</Main-Class>
+									</manifestEntries>
+								</transformer>
+							</transformers>
+						</configuration>
+					</execution>
+					
+					<!-- Serveur -->
+					<execution>
+						<id>server-akka</id>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<shadedArtifactAttached>true</shadedArtifactAttached>
+							<shadedClassifierName>allinone</shadedClassifierName>
+							<finalName>Akka-Server</finalName>
+							<artifactSet>
+								<includes>
+									<include>*:*</include>
+								</includes>
+							</artifactSet>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+									<resource>reference.conf</resource>
+								</transformer>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<manifestEntries>
+										<Main-Class>car.tp3.presentation.Server</Main-Class>
 									</manifestEntries>
 								</transformer>
 							</transformers>
