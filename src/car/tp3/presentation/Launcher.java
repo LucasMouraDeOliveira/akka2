@@ -1,5 +1,6 @@
 package car.tp3.presentation;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Launcher {
@@ -12,6 +13,14 @@ public class Launcher {
 	 */
 	public static void main(String[] args) {
 		Client client = new Client();
+		
+		if(args.length == 1){
+			try {
+				new GraphBuilder(args[0]).build(client);
+			} catch (IOException e) {
+			}
+		}
+			
 		if(client.start()){
 			Scanner sc = new Scanner(System.in);
 			System.out.print("> ");

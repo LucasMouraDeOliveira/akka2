@@ -111,6 +111,13 @@
 			<version>2.3.9</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.typesafe.akka/akka-testkit_2.11 -->
+		<dependency>
+		    <groupId>com.typesafe.akka</groupId>
+		    <artifactId>akka-testkit_2.11</artifactId>
+		    <version>2.4.17</version>
+		</dependency>
+	
 		<dependency>
 			<groupId>com.typesafe</groupId>
 			<artifactId>config</artifactId>

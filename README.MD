@@ -1,16 +1,17 @@
-#TP3 CAR - Akka
+# TP3 CAR - Akka
 
-#Auteurs
+## Auteurs
 Lucas Moura de Oliveira
+
 Eliott Bricout
 
 26/03/2017
 
-#Exécution
+## Exécution
 
 L'application est découpée en deux parties, et donc deux jars exécutables indépendamment.
 
-##Client
+### Client
 
 Akka-Client.jar permet de lancer le client de l'application. A partir de ce client on peut créer/supprimer des noeuds, créer/supprimer des liaisons entre ces noeuds, et envoyer des messages.
 	
@@ -22,7 +23,7 @@ Le jar se lance avec la commande suivante :
 	
 Dans le cas ou le paramètre [config] n'est pas renseigné, aucun noeud ni aucune liaison ne sont créés.
 	
-##Serveur
+### Serveur
 
 Akka-Serveur.jar permet de lancer un serveur (système d'acteurs Akka). Les noeuds créés par la partie client de l'application sont créés dans ce (ou ces) système(s).
 
@@ -34,15 +35,13 @@ Le jar se lance avec la commande suivante :
 
 <serverName> est un paramètre obligatoire qui prend une valeur textuelle, non vide, qui permet de déterminer le nom apparent du système d'acteur.
 
-##Configuration de graphe
+### Configuration de graphe
 
-
-
-#Fonctionnalités
+## Fonctionnalités
 
 Les fonctionnalités de l'applications sont toutes à exécuter depuis le client (mis à part le lancement des serveurs). Chaque fonctionnalité est associée à une commande exécutable depuis le terminal où le client a été lancé.
 
-## Liste des fonctionnalités
+###  Liste des fonctionnalités
 
 	create <serverName> <address> <port> <actorName> : créé un acteur sur un serveur distant.
 	
@@ -58,12 +57,9 @@ Les fonctionnalités de l'applications sont toutes à exécuter depuis le client (m
 	
 Par commodité, dans la plupart des commandes on passe seulement le nom de l'acteur et non pas son chemin d'accès complet. La conséquence de ce choix est que deux acteurs, même sur des serveurs différents, ne peuvent pas avoir le même nom. Lorsqu'un utilisateur tente de créer un acteur dont le nom est déjà référencé par le client, la création échoue et un message d'erreur lui est renvoyé.
 
-En ce qui concerne les liens de parenté, nous avons choisi de nous basé uniquement sur des relations de voisins. Etant donné qu'un arbre constitue un cas particulier d'un graphe (non cyclique) et que notre graphe est capable de transmettre les messages à tous ses noeuds, nous pensons que l'implémentation d'un lien père/fils dans les noeuds n'est pas nécessaire.
-
-##Logs
+### Logs
 
 Lorsqu'un acteur reçoit un message, celui-ci apparaitra dans la console depuis laquelle son actorSystem a été lancé. 
 Les messages sont de la forme : [sender -> receiver] message
-
 
 
